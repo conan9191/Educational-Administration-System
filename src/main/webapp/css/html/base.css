@@ -1,0 +1,32 @@
+body{
+	font-family:"Microsoft YaHei",Arial,Helvetica,sans-serif,"宋体";
+	font-size:16px;
+	background-color: #f1f1f1;
+}
+
+ul{list-style: none;}
+
+li{line-height: 25px;}
+
+#navigation{
+	height: 100%;
+	position: fixed;
+}
+
+.header{
+	height:40px;
+	width: 100%;
+	background-color:#464646;
+}
+
+.container{
+	padding-top: 30px;
+	width: 90%;
+	margin-left:5%;
+}
+
+.nav-header{
+	font-size:28px;
+	cursor: pointer;
+	text-decoration: none;
+}

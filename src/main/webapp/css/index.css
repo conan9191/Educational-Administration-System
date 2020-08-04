@@ -1,0 +1,32 @@
+		.bg{
+			background:url('images/index-city.jpg');
+			height: 900px;
+		}
+
+		.bg-blur{
+			float:left;
+			width: 100%;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			filter: blur(3px);
+		}
+		
+		.content{
+			color:white;
+			font-size: 18px;
+			line-height: 60px;
+			text-align: center;
+		}
+
+		.content-front {
+         	position:absolute;
+        } 
+
+		#btn-register{
+			width: 40%;
+		}
+
+		.button-pill {
+ 			border-radius: 200px;
+ 		}

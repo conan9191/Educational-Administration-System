@@ -1,0 +1,16 @@
+$(function(){
+	$('#sign').on('click',function(){
+		$.ajax({
+			type:"POST",
+			url:"./../edu_system/attendance/sign",
+			dataType:"json",
+			success:function(){
+				layer.msg("签到成功");
+				$('#sign').removeClass("btn-primary").addClass("btn-success").text("今天已签到").attr("disabled","disabled");
+			},
+			error:function(){
+				layer.msg("签到失败");
+			}
+		});
+	});
+});

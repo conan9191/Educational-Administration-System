@@ -1,0 +1,12 @@
+$(function(){
+	$.ajax({
+		type:"GET",
+		url:"./../edu_system/system/getActiveUser",
+		dataType:"json",
+		success:function(data){
+			if(data.errno=="0000"){
+				$("#userinfo").text(data.user.username);
+			}
+		}
+	});
+});

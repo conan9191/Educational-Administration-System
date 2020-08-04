@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>专业方向管理</title>
+
+	<!-- css -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/jquery.slider.css">
+	<link rel="stylesheet" href="./css/html/base.css">
+</head>
+<body>
+	<div class="header">
+		<div class="col-md-4" style="font-size:24px;color:#fcfbe7;padding-left:7%;">
+			NIIT
+		</div>
+		<div class="col-md-offset-4 col-md-4" style="font-size:24px;color:#fcfbe7;padding-left:250px;">
+			欢迎您：<span id="userinfo"></span>
+		</div>
+	</div>
+
+	<div class="container">
+		<session class="navi"></session>
+		<session class="system-profession col-md-offset-2 col-md-10"></session>
+	</div>
+	<!-- 导航 -->
+	<script id="system-navi" type="text/html">
+		<div id="navigation" class="col-md-2">
+			<span class="nav-header text-center" style="padding-left:15px;">
+				菜单
+			</span>
+			<%if(menuList){%>
+				<%for(var i=0 ; i<menuList.length ; i++) {%>
+				<ul class="nav nav-stacked" role="navigation">
+					<li>
+						<a class="text-muted" href="./<%=menuList[i].url%>.html" data-toggle="collapse">
+							<span class="glyphicon glyphicon-cog"></span>&nbsp;<%=menuList[i].name%>
+						</a>
+						<%if(menuList[i].childrenMenuList){%>
+						<ul id="menu-<%=i%>" class="collapse in">
+							<%for(var j=0 ; j<menuList[i].childrenMenuList.length ; j++) {%>
+							<li>
+								<a class="text-info btn" href="./<%=menuList[i].childrenMenuList[j].url%>.html">
+								<%=menuList[i].childrenMenuList[j].item%>
+								</a>
+							</li>
+							<%}%>	
+						</ul>
+						<%}%>
+					</li>
+				</ul>
+               <%}%> 
+			<%}%>
+		</div>
+	</script>	
+	
+	<script id="profession-table" type="text/html">
+		<div>
+			<div class="pull-right">
+				<button class="btn btn-success" data-toggle="modal" data-target="#addOne">
+					<span class="glyphicon glyphicon-plus"></span>
+					新添加一行
+				</button>
+			</div>
+			
+			<table class="table table-hover">
+			<caption>
+				<h4>专业方向管理</h4>
+				<div>每页显示
+					<select>
+						<option selected="selected" value="5">5</option>
+						<option value="10">10</option>
+						<option value="20">20</option>
+					</select>
+					条信息
+				</div>
+			</caption>
+			
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>专业方向</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%if(professionList){%>
+					<%for(var i=0 ; i<professionList.length ; i++) {%>
+					<tr>
+						<td><%=professionList[i].id%></td>
+						<td><%=professionList[i].name%></td>		
+						<td colspan="2"><div class="col-md-4 col-md-offset-8" ><a href="javascript:delOne(<%=professionList[i].id%>)">删除</a></div></td>
+					</tr>
+                   <%}%> 
+				<%}%>
+			</tbody>
+		</table>
+			<ul class="pager">
+			    <li><a href="#">Previous</a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+			    <li><a href="#">Next</a></li>
+			</ul>
+		</div>
+	</script>
+
+	<div class="modal fade" id="addOne" tabindex="-1" role="dialog" aria-labelledby="body" aria-hidden="true">
+	    <div class="modal-dialog">
+		        <div class="modal-content">
+		        	<div class="modal-body">
+		            <div class="form-group">
+						<label for="add-city">专业方向名</label>
+						<input class="form-control" type="text" id="add-name" placeholder="请输入专业方向名称">
+		            </div>
+		            <div class="text-right">
+						<button class="btn btn-primary" id="add-btn" type="submit">添加</button>
+						<button class="btn btn-danger" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal-dialog -->
+	</div>
+	
+	
+	
+	<script src="./js/jquery-3.2.1.min.js"></script>
+	<script src="./js/jquery.slider.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/layer/layer.js"></script>
+	<script src="./js/template.js"></script>
+	<script src="./js/html/profession.js"></script>
+	<script src="./js/html/userinfo.js"></script>
+	<script src="./js/html/menus.js"></script>
+</body>
+</html>

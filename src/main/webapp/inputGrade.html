@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>教务管理系统</title>
+
+	<!-- css -->
+	<link rel="stylesheet" href="./css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="./css/html/base.css">
+
+</head>
+<body>
+	<div class="header">
+		<div class="col-md-4" style="font-size:24px;color:#fcfbe7;padding-left:7%;">
+			NIIT
+		</div>
+		<div class="col-md-offset-4 col-md-4" style="font-size:24px;color:#fcfbe7;">
+			欢迎您：<span id="userinfo"></span>
+		</div>
+	</div>
+	
+	<div class="container">
+		<session class="navi"></session>
+		<div class="col-md-offset-4 col-md-4 form-horizontal">
+			<h3>成绩录入</h3>
+			<div class="form-group">
+				<label for="add-studentNo" class="col-md-2 control-label">学号</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" id="add-studentNo" placeholder="请输入学号">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="add-courseName" class="col-md-2 control-label">课程名称</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" id="add-courseName" placeholder="请输入课程名称">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="add-grade" class="col-md-2 control-label">成绩</label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" id="add-grade" placeholder="请输入成绩">
+				</div>
+			</div>
+			<div class="text-right">
+				<button class="btn btn-primary" id="add-btn" type="submit">添加</button>
+			</div>
+			</div>
+		</div>
+	<!-- 导航 -->
+	<script id="system-navi" type="text/html">
+		<div id="navigation" class="col-md-2">
+			<span class="nav-header text-center" style="padding-left:15px;">
+				菜单
+			</span>
+			<%if(menuList){%>
+				<%for(var i=0 ; i<menuList.length ; i++) {%>
+				<ul class="nav nav-stacked" role="navigation">
+					<li>
+						<a class="text-muted" href="./<%=menuList[i].url%>.html" data-toggle="collapse">
+							<span class="glyphicon glyphicon-cog"></span>&nbsp;<%=menuList[i].name%>
+						</a>
+						<%if(menuList[i].childrenMenuList){%>
+						<ul id="menu-<%=i%>" class="collapse in">
+							<%for(var j=0 ; j<menuList[i].childrenMenuList.length ; j++) {%>
+							<li>
+								<a class="text-info btn" href="./<%=menuList[i].childrenMenuList[j].url%>.html">
+								<%=menuList[i].childrenMenuList[j].item%>
+								</a>
+							</li>
+							<%}%>	
+						</ul>
+						<%}%>
+					</li>
+				</ul>
+               <%}%> 
+			<%}%>
+		</div>
+	</script>	
+
+	<!-- script -->
+	<script src="./js/jquery-3.2.1.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/layer/layer.js"></script>
+	<script src="./js/template.js"></script>
+	<script src="./js/html/userinfo.js"></script>
+	<script src="./js/html/menus.js"></script>
+	<script src="./js/html/inputGrade.js"></script>
+
+</body>
+</html>

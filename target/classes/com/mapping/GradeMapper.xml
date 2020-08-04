@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.IGradeDao" >
+  <resultMap id="BaseResultMap" type="com.pojo.Grade" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="studentNo" property="studentNo" jdbcType="VARCHAR" />
+    <result column="courseName" property="coursename" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, studentNo, courseName, grade
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_grade
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+    <select id="selectAllGrades" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from t_grade
+  </select>
+  
+    <select id="selectGradeByStudentNoAndCourseName" resultMap="BaseResultMap" parameterType="com.pojo.Grade" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_grade
+    where studentNo = #{studentNo,jdbcType=VARCHAR} and courseName = #{coursename,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_grade
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.Grade" >
+    insert into t_grade (id, studentNo, courseName, 
+      grade)
+    values (#{id,jdbcType=INTEGER}, #{studentNo,jdbcType=VARCHAR}, #{coursename,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.Grade" >
+    insert into t_grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="studentNo != null" >
+        studentNo,
+      </if>
+      <if test="coursename != null" >
+        courseName,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentNo != null" >
+        #{studentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null" >
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.Grade" >
+    update t_grade
+    <set >
+      <if test="studentNo != null" >
+        studentNo = #{studentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null" >
+        courseName = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.Grade" >
+    update t_grade
+    set studentNo = #{studentNo,jdbcType=VARCHAR},
+      courseName = #{coursename,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
